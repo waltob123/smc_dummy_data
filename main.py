@@ -23,7 +23,7 @@ def main(filename, type_of_record):
                         new_facility.region = region
                         new_facility.district = district_name
                         new_facility.number_of_households = int(random.randint(
-                            50, 300) * weight)
+                            50, 200) * weight)
                         for i in range(1, 5):
                             new_facility.cycle = i
                             for j in range(1, 4):
@@ -31,13 +31,19 @@ def main(filename, type_of_record):
                                 new_facility.households_visited = int(random.randint(
                                     50, new_facility.number_of_households)*weight)
                                 new_facility.number_of_children_in_households = random.randint(
-                                    new_facility.households_visited, new_facility.households_visited*4)
+                                    new_facility.households_visited, new_facility.households_visited*5)
                                 for age in AGE_CATEGORIES:
                                     new_facility.age_category = age
+                                   
                                     new_facility.blisters_received = int(random.randint(
-                                        300, 350)*weight)
-                                    new_facility.blisters_used = random.randint(
-                                        300, new_facility.blisters_received)   # original blisters used before commenting
+                                       new_facility.number_of_children_in_households,int(1000*weight))*weight)
+                                    
+                                    number_of_children_dosed  = random.randint(
+                                        new_facility.households_visited, new_facility.number_of_children_in_households)
+                                    number_of_children_not_dosed = new_facility.number_of_children_in_households-number_of_children_dosed
+                                    new_facility.blisters_used =number_of_children_dosed
+                                    
+                                          # original blisters used before commenting
 
                                     # new_facility.blisters_used = random.randint(
                                     #     0, new_facility.number_of_children_in_households)   # new blisters used
@@ -47,26 +53,28 @@ def main(filename, type_of_record):
                                         new_facility.blisters_used - new_facility.blisters_wasted
                                     random_percentage = round(
                                         random.uniform(0.3, 0.8), 1)
+                                    
+                                    
                                     # new_facility.number_of_children_not_dosed = new_facility.number_of_children_in_households - \
                                     #     - new_facility.blisters_used
+                                       
                                     for gender in GENDER:
                                         new_facility.gender = gender
                                         if gender == "Male":
-                                            new_facility.number_of_children_dosed = int(
-                                                new_facility.blisters_used * random_percentage)
-                                            # new_facility.number_of_children_not_dosed = int(
-                                            #     new_facility.number_of_children_not_dosed * random_percentage
-                                            # )
-
+                                            # Calculate the number of children dosed for males
+                                            new_facility.number_of_children_dosed = int(number_of_children_dosed * random_percentage)
+                                            # Calculate the number of children not dosed for males
+                                            new_facility.number_of_children_not_dosed = int(number_of_children_not_dosed * random_percentage)
                                         else:
-                                            new_facility.number_of_children_dosed = int(
-                                                new_facility.blisters_used * (1 - random_percentage))
-                                            # new_facility.number_of_children_not_dosed = int(
-                                            #     new_facility.number_of_children_not_dosed * (1 - random_percentage)
-                                            # )
+                                            # Calculate the number of children dosed for females
+                                            new_facility.number_of_children_dosed = number_of_children_dosed - new_facility.number_of_children_dosed
+                                            # Calculate the number of children not dosed for females
+                                            new_facility.number_of_children_not_dosed = number_of_children_not_dosed - new_facility.number_of_children_not_dosed
 
+                                    # Ensure that the sum of dosed children for male and female equals number_of_children_dosed
+                                   
                                         new_facility.adr_reported = random.randint(
-                                            0, int(new_facility.number_of_children_dosed * 0.2))
+                                                    0, int(new_facility.number_of_children_dosed * 0.2))
 
                                         results.append(new_facility.to_dict())
                                         storage.save(new_facility.to_dict())
