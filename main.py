@@ -99,7 +99,7 @@ def main(filename, type_of_record):
                                     storage.save(new_adr.to_dict())
 
         
-        print("ADR")
+        print("ADR data")
     
     if type_of_record == "Blisters":
         print("Blisters")
