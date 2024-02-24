@@ -77,7 +77,7 @@ def main(filename, type_of_record):
 
                                         results.append(new_facility.to_dict())
                                         storage.save(new_facility.to_dict())
-            print(results)
+            
 
     if type_of_record == "ADR":
         results = []
