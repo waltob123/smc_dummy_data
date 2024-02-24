@@ -1,16 +1,13 @@
-import random
-import csv
-
-
 class Base:
 
-    def __init__(self, year, age_category, gender, region, district, cycle):
+    def __init__(self, year, age_category, gender, region, district, cycle, round):
         self.year = year
         self.age_category = age_category
         self.gender = gender
         self.region = region
         self.district = district
         self.cycle = cycle
+        self.round = round
 
     def to_dict(self):
         return {
@@ -19,7 +16,8 @@ class Base:
             "gender": self.gender,
             "region": self.region,
             "district": self.district,
-            "cycle": self.cycle
+            "cycle": self.cycle,
+            "round": self.round
         }
 
     def __str__(self):

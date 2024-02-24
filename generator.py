@@ -2,20 +2,14 @@ import csv
 
 
 class Generator(object):
-    def __init__(self, filename: str):
-        self.filename = filename
+    NUMBER_OF_RECORDS = 1000
+    
+    def generate_facility_data(self):
+        for record in range(self.NUMBER_OF_RECORDS):
+            pass
 
-
-    def read_csv(self) -> list:
-        '''
-        Reads a CSV file and returns a list of dictionaries.
-        
-        Return (List): List of dictionaries.
-        '''
-        with open(self.filename, mode='r') as file:
-            reader = csv.DictReader(file)
-            return [row for row in reader]
-
-    def write_csv(self, data: dict) -> None: pass
+    def generate_adr_data(self):
+        pass
+    
 
 # generator = Generator('data.csv')
