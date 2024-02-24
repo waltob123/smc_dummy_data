@@ -4,7 +4,7 @@ import random
 from facility import Facility
 from adr import ADR
 from storage import FileStorage
-from utils import YEARS, AGE_CATEGORIES, REGIONS_DISTRICTS, GENDER
+from utils import YEARS, AGE_CATEGORIES, REGIONS_DISTRICTS, GENDER,ADR_NAMES
 
 
 def main(filename, type_of_record):
@@ -59,8 +59,48 @@ def main(filename, type_of_record):
         print(results)
 
     if type_of_record == "ADR":
-        print("ADR")
+        results = []
+        storage = FileStorage(filename)
+        storage.write_header(ADR().to_dict().keys())
+        
+        for year in YEARS:
+            weight = year["weight"]
+            for region in REGIONS_DISTRICTS.keys():
+                for district_name, facilities in REGIONS_DISTRICTS.get(region).items():
+                    for i in range(1, 5):
+                        for j in range(1, 4):
+                            new_adr = ADR()  # Create a new instance of ADR inside the loop
+                            new_adr.year = year["yr"]
+                            new_adr.region = region
+                            new_adr.district = district_name
+                            new_adr.cycle = i
+                            new_adr.round = j
+                            for age in AGE_CATEGORIES:
+                                 new_adr.age_category = age
+                                 new_adr.adr_name=random.choice(ADR_NAMES)
+                                 random_percentage = round(
+                                        random.uniform(0.3, 0.8), 1)
+                                 
+                                 no_of_reported_cases =int(random.randint(
+                                        400,800 )*weight) 
+                                 for gender in GENDER:
+                                    new_adr.gender = gender
+                                    
+                                    if gender == "Male":
+                                        new_adr.no_of_reported_cases = int(
+                                            no_of_reported_cases * random_percentage)
+                                        
+                                    else:
+                                         new_adr.no_of_reported_cases = int(
+                                            no_of_reported_cases * (1 - random_percentage))
+                                         
+                                    
+                                    results.append(new_adr.to_dict())
+                                    storage.save(new_adr.to_dict())
 
+        
+        print("ADR")
+    
     if type_of_record == "Blisters":
         print("Blisters")
 

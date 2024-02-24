@@ -1,7 +1,7 @@
 import random
 
 YEARS = [{"yr":2018,"weight":1}, {"yr":2019,"weight":1.15},{ "yr":2020,"weight":1.22},{ "yr":2021,"weight":1.13},{ "yr":2022,"weight":1.08}, {"yr":2023,"weight":1.03}]
-
+ADR_NAMES = ["Nausea","Vomiting","Diarrhea","Abdominal pain","Drowsiness","Dizziness","Irritability","Insomnia","Rash", "Itching","Hives"]
 REGIONS = [
     'Ashanti', 'Brong Ahafo', 'Central',
     'Eastern', 'Greater Accra', 'Northern',
