@@ -1,6 +1,6 @@
 import random
 
-YEARS = [2018, 2019, 2020, 2021, 2022, 2023]
+YEARS = [{"yr":2018,"weight":1}, {"yr":2019,"weight":1.15},{ "yr":2020,"weight":1.22},{ "yr":2021,"weight":1.13},{ "yr":2022,"weight":1.08}, {"yr":2023,"weight":1.03}]
 
 REGIONS = [
     'Ashanti', 'Brong Ahafo', 'Central',

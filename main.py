@@ -14,29 +14,31 @@ def main(filename, type_of_record):
         storage = FileStorage(filename)
         storage.write_header(new_facility.to_dict().keys())
         for year in YEARS:
+            weight=year["weight"]
             for region in REGIONS_DISTRICTS.keys():
                 for district_name, facilities in REGIONS_DISTRICTS.get(region).items():
                     for facility in facilities:
                         new_facility.facility_name = facility
-                        new_facility.year = year
+                        new_facility.year = year["yr"]
                         new_facility.region = region
                         new_facility.district = district_name
-                        new_facility.number_of_households = random.randint(
-                            50, 300)
+                        new_facility.number_of_households =int( random.randint(
+                            50, 300) *weight)
                         for i in range(1, 5):
                             new_facility.cycle = i
                             for j in range(1, 4):
                                 new_facility.round = j
-                                new_facility.households_visited = random.randint(
-                                    50, new_facility.number_of_households)
+                                new_facility.households_visited =int( random.randint(
+                                    50, new_facility.number_of_households)*weight)
                                 for age in AGE_CATEGORIES:
                                     new_facility.age_category = age
-                                    new_facility.blisters_received = random.randint(
-                                        300, 350)
-                                    new_facility.blisters_used = random.randint(
-                                        300, new_facility.blisters_received)
-                                    new_facility.blisters_wasted = random.randint(
+                                    new_facility.blisters_received =int(random.randint(
+                                        300, 350)*weight) 
+                                    new_facility.blisters_used =int( random.randint(
+                                        300, new_facility.blisters_received)*weight)
+                                    new_facility.blisters_wasted =int( random.randint(
                                         0, (new_facility.blisters_received - new_facility.blisters_used))
+                                   *weight )
                                     new_facility.blisters_remaining = new_facility.blisters_received - \
                                         new_facility.blisters_used - new_facility.blisters_wasted
                                     random_percentage = round(
