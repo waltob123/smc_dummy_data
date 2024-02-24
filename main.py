@@ -36,7 +36,7 @@ def main(filename, type_of_record):
                                     new_facility.age_category = age
                                    
                                     new_facility.blisters_received = int(random.randint(
-                                       new_facility.number_of_children_in_households,int(1000*weight))*weight)
+                                       new_facility.number_of_children_in_households,int(1300*weight))*weight)
                                     
                                     number_of_children_dosed  = random.randint(
                                         new_facility.households_visited, new_facility.number_of_children_in_households)
@@ -61,18 +61,17 @@ def main(filename, type_of_record):
                                     for gender in GENDER:
                                         new_facility.gender = gender
                                         if gender == "Male":
-                                            # Calculate the number of children dosed for males
+                                           
                                             new_facility.number_of_children_dosed = int(number_of_children_dosed * random_percentage)
-                                            # Calculate the number of children not dosed for males
+                                          
                                             new_facility.number_of_children_not_dosed = int(number_of_children_not_dosed * random_percentage)
                                         else:
-                                            # Calculate the number of children dosed for females
+                                          
                                             new_facility.number_of_children_dosed = number_of_children_dosed - new_facility.number_of_children_dosed
-                                            # Calculate the number of children not dosed for females
+                                           
                                             new_facility.number_of_children_not_dosed = number_of_children_not_dosed - new_facility.number_of_children_not_dosed
 
-                                    # Ensure that the sum of dosed children for male and female equals number_of_children_dosed
-                                   
+                                  
                                         new_facility.adr_reported = random.randint(
                                                     0, int(new_facility.number_of_children_dosed * 0.2))
 
@@ -91,7 +90,7 @@ def main(filename, type_of_record):
                 for district_name, facilities in REGIONS_DISTRICTS.get(region).items():
                     for i in range(1, 5):
                         for j in range(1, 4):
-                            new_adr = ADR()  # Create a new instance of ADR inside the loop
+                            new_adr = ADR() 
                             new_adr.year = year["yr"]
                             new_adr.region = region
                             new_adr.district = district_name
