@@ -31,12 +31,12 @@ def main(filename, type_of_record):
                                 new_facility.households_visited = int(random.randint(
                                     50, new_facility.number_of_households)*weight)
                                 new_facility.number_of_children_in_households = random.randint(
-                                    new_facility.households_visited, new_facility.households_visited*5)
+                                    new_facility.households_visited, new_facility.households_visited*4)
                                 for age in AGE_CATEGORIES:
                                     new_facility.age_category = age
                                    
                                     new_facility.blisters_received = int(random.randint(
-                                       new_facility.number_of_children_in_households,int(1300*weight))*weight)
+                                       new_facility.number_of_children_in_households,int(1100*weight))*weight)
                                     
                                     number_of_children_dosed  = random.randint(
                                         new_facility.households_visited, new_facility.number_of_children_in_households)
